@@ -24,8 +24,33 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#main"><?php esc_html_e( 'Skip to content', 'barrier-reef-orchestra' ); ?></a>
 
-	<header id="masthead" class="site-header" role="banner">
-		<div class="site-branding">
+    <?php if ( get_header_image()) { ?>
+        <header id="masthead" class="site-header" style="background-image: url(<?php header_image(); ?>)"role="banner">
+    <?php } else { ?>
+        <header id="masthead" class="site-header" role="banner">
+    <?php } ?>          
+
+            <?php //Display the site icon or first letter as a logo?>
+            <div class="site-logo">
+                <?php $site_title = get_bloginfo('name');?>
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+                   <div class="screen-reader-text">
+                       <?php printf( esc_html__('Go to the home page'));?>
+                    </div>
+                    <?php
+                    if (has_site_icon()){
+                        $site_icon = esc_url (get_site_icon_url(512));?>
+                    <img class="site-icon" src="<?php echo $site_icon; ?>" alt=""
+                    <?php } else { ?>
+                    <div class="site-firstletter" aria-hidden="true">
+                       <?php echo substr($site_title,0,1);?>
+                    </div>
+                    <?php } ?>
+                </a>
+            </div>
+                
+            
+            <div class="site-branding">
 			<?php
 			if ( is_front_page() && is_home() ) : ?>
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
@@ -43,7 +68,7 @@
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
 			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'barrier-reef-orchestra' ); ?></button>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
+			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu','menu_class'     => 'nav-menu', ) ); ?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
 
