@@ -81,7 +81,7 @@
         
         function initMainNavigation( container ) {
 		// Add dropdown toggle that display child menu items.
-		container.find( '.menu-item-has-children > a, .page_item_has_children > a' ).after( '<button class="dropdown-toggle" aria-expanded="false">' + screenReaderText.expand + '</button>' );
+		container.find( '.menu-item-has-children > a' ).after( '<button class="dropdown-toggle" aria-expanded="false">' + screenReaderText.expand + '</button>' );
 
 		// Toggle buttons and submenu items with active children menu items.
 		container.find( '.current-menu-ancestor > button' ).addClass( 'toggle-on' );
@@ -96,7 +96,6 @@
 			_this.html( _this.html() === screenReaderText.expand ? screenReaderText.collapse : screenReaderText.expand );
 		} );
 	}
-        
 	initMainNavigation( $( '.main-navigation' ) );
 
 	// Re-initialize the main navigation when it is updated, persisting any existing submenu expanded states.
@@ -110,5 +109,6 @@
 				$( params.newContainer ).find( '#' + containerId + ' > .dropdown-toggle' ).triggerHandler( 'click' );
 			});
 		}
+        
 	});
 } )( jQuery );

@@ -440,25 +440,23 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-	border: 1px solid;
-	border-color: #ccc #ccc #bbb;
+	border: 2px solid;
+	border-color: #fff;
 	border-radius: 3px;
-	background: #e6e6e6;
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05);
-	color: rgba(0, 0, 0, .8);
+	background: #67DDE5;
+	color: #fff;
 	font-size: 12px;
 	font-size: 0.75rem;
 	line-height: 1;
 	padding: .6em 1em .4em;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+	
 }
 
 button:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
-	border-color: #ccc #bbb #aaa;
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(0, 0, 0, 0.02);
+	border-color: #fff;
 }
 
 button:focus,
@@ -469,8 +467,8 @@ button:active,
 input[type="button"]:active,
 input[type="reset"]:active,
 input[type="submit"]:active {
-	border-color: #aaa #bbb #bbb;
-	box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15);
+	border-color: #fff;
+	//box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 input[type="text"],
@@ -583,10 +581,12 @@ a:active {
 	display: none;
 	list-style: none;
 	margin: 0;
-	padding-left: 0;
+	padding-left: 0
 }
 
 .main-navigation a {
+        font-family: 'Merriweather', sans-serif;
+        color: white;
 	display: block;
 	padding: 0.8em 0;
 	position: relative;
@@ -646,50 +646,62 @@ a:active {
 	position: absolute;
         height: 27px;
         width: 27px;
-        top: 12px;
+        top: 5px;
         right: 6px;
-	border: 1px solid #fff;
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
         font-family: 'FontAwesome';
-        background-color: #000;
-	-webkit-box-sizing: content-box;
-	-moz-box-sizing: content-box;
-	box-sizing: content-box;
-	content: "";
-	height: 27px;
-	padding: 0;
-	position: absolute;
-	text-transform: lowercase; /* Stop screen readers to read the text as capital letters */
-	top: 3px;
-	right: 0;
-	width: 42px;
+        background-color: #67DDE5;
+        border: 1px solid #fff;
+        content:"";
+        color: #000;
+        text-transform: lowercase;
 }
 
 .dropdown-toggle:after {
-	content: "\f078";
-	font-size: 14px;
-	line-height: 27px;
+	color: #333;
+	content: "\f103";
+	font-size: 24px;
 	position: relative;
-	top: 0;
 	left: 1px;
-	width: 27px;
+	width: 42px;
+        color: white;
 }
 
 .dropdown-toggle:hover,
 .dropdown-toggle:focus {
-	background-color: #eaeaea;
-	background-color: rgba(51, 51, 51, 0.1);
+	background-color: #2ECCFA;
+	
 }
 
 .dropdown-toggle:focus {
+   
 	outline: 1px solid #c1c1c1;
 	outline: 1px solid rgba(51, 51, 51, 0.3);
 }
 
 .dropdown-toggle.toggle-on:after {
-	content: "\f077";
+	content: "\f102";
 }
 
-@media screen and (min-width: 37.5em) {
+/* Small menu. */
+
+.menu-toggle,
+.main-navigation.toggled ul {
+    display: block;
+}
+
+.menu-toggle {
+    position: fixed;
+    z-index: 100;
+    left: 10px;
+    top: 10px;
+    background-color: #67DDE5;
+    color: white;
+}
+
+@media screen and (min-width: 45em) {
 	.menu-toggle {
 		display: none;
 	}
@@ -719,7 +731,110 @@ a:active {
 	text-align: right;
 	width: 50%;
 }
+/* Make the menu attach to the button */
 
+.main-navigation.toggled {
+    position: fixed;
+    padding: .5em;
+    zindex: 1;
+    top: 0px;
+    background-color: #67DDE5;
+}
+
+.main-navigation.toggled ul {
+    max-height: calc(100vh - 10em);
+    overflow-y:auto;
+}
+
+.main-navigation.toggled ul ul {
+    display: none;
+}
+
+.main-navigation.toggled ul ul.toggled-on,
+.main-navigation.toggled ul ul.toggle-on > ul {
+    display: block;
+}
+
+.nav-menu {
+    padding-top: 30px;
+    background-color: #67DDE5;
+}
+
+/* Desktop site - horizontal menu*/
+
+@media screen and (min-width: 50em) {
+    
+.main-navigation,
+.main-navigation.toggled {
+    position: relative;
+    min-height: 3em;
+    max-width: 48em;
+    margin: auto;
+    padding: 0 3em;
+    background-color: #67DDE5;
+}
+
+.nav-menu {
+    padding: .5em 0 0 0;
+    background-color: transparent;
+}
+
+.main-navigation ul,
+.main-navigation.toggled ul {
+    max-height: none;
+    padding-left: 0;
+    text-align: center;
+}
+
+.main-navigation.toggled ul {
+    overflow-y: visible;
+}
+
+.main-navigation.toggled li {
+    display: inline-block;
+    border: none;
+}
+
+.main-navigation ul ul {
+    outline: 1px solid white;
+}
+
+.main-navigation li li a:hover,
+.main-navigation li li a:focus {
+    background: white;
+    color: #67DDE5;
+    text-decoration: none;
+}
+
+.main-navigation ul ul.toggled-on {
+    position: absolute;
+    width: 11em;
+    display: inline-block;
+    z-index: 12;
+    margin-left: none;
+    background: white;
+}
+
+.main-navigation ul ul ul.toggled-on {
+    position: relative;
+}
+
+.main-navigation ul ul ul a {
+    padding-left: 1em;
+}
+
+.dropdown-toggle {
+    top: 11px;
+    right: 13px;
+    border: none;
+}
+
+.dropdown-toggle::after {
+    line-height: 20px;
+    width: 27px;
+}
+
+}
 /*--------------------------------------------------------------
 # Accessibility
 --------------------------------------------------------------*/
@@ -824,7 +939,7 @@ a:active {
 # Header
 --------------------------------------------------------------*/
 .site-header{
-    background-color: #89bdd3;
+    background-color: #67DDE5;
     background-size: cover;
 }
 
@@ -833,7 +948,6 @@ a:active {
 }
 
 .site-title {
-    margin: 1.7em 1.2em 0;
     font-size: 2.5em;
     font-weight: bold;
     line-height: 1.4em;
@@ -868,16 +982,12 @@ a:active {
  
 .site-logo{
     position: relative;
-    max-width: 300px;
-    max-height: 300px;
-    
+    padding: 10px;
+    max-width: 150px;
+    max-height: 150px;   
 }
 
-.site-logo a {
-    position: absolute;
-    z-index: 10;
-    display: block;   
-}
+
 
 .site-firstletter {
     font-size: 1.5em;
